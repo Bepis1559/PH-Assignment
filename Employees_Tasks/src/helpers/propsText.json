@@ -1,0 +1,19 @@
+{
+    "Employee" : {
+        "AddBtn" :{
+            "aria_describedby" : "when the button is clicked , a popup / modal will appear on the screen , which will allow for adding a new employee to the employees table",
+            "aria_label" : "add a new employee",
+            "content" : "Employee"
+        },
+        "EditBtn" : {
+            "aria_describedby" : "when the button is clicked , a popup / modal will appear on the screen , which will allow for editing the employee stats",
+            "aria_label" : "change the stats of this employee"
+        },
+        "DeleteBtn" : {
+            "aria_label" : "delete the employee"
+        }
+        
+    }
+    
+   
+}

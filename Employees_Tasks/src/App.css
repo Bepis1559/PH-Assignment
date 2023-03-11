@@ -26,6 +26,7 @@ select {
 }
 
 body {
+  padding-top: 1em;
   background: none;
   min-height: 100vh;
 }
@@ -35,3 +36,39 @@ html {
 }
 
 /* =============================== */
+
+/* employee table */
+
+table :is(th, td) {
+  text-align: center;
+}
+
+
+.btn {
+  padding: .1em .3em;
+
+}
+
+.action-td {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* buttons */
+
+.add-btn-container {
+  display: flex;
+  margin-block: 1em;
+  padding-block: 1em;
+  border-radius: 10px;
+  background: #333;
+  justify-content: flex-end;
+  padding-inline-end: 1em;
+
+}
+
+#faPlusIcon {
+  margin-inline: .5em;
+  scale: 1.2;
+
+}
