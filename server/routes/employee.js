@@ -26,8 +26,8 @@ employeeRouter.post('/', (req, res) => {
     const employeeToPush =
     {
         id: id,
-        email: req.body.email,
         fullName: req.body.fullName,
+        email: req.body.email,
         phoneNumber: req.body.phoneNumber,
         dateOfBirth: req.body.dateOfBirth,
         monthlySalary: req.body.monthlySalary,
@@ -39,10 +39,33 @@ employeeRouter.post('/', (req, res) => {
 
 
 // ====================================
-//  post requests 
+//  delete requests 
 
 employeeRouter.delete('/:id', (req, res) => {
     employees = employees.filter(employee => employee.id != req.params.id)
     if (!employees.length) id = 1
     res.sendStatus(200)
 })
+
+// ====================================
+//  put requests 
+
+employeeRouter.put('/', (req, res) => {
+    const id = req.body.id
+    const updatedEmployee = {
+        id: id,
+        fullName: req.body.fullName,
+        email: req.body.email,
+        phoneNumber: req.body.phoneNumber,
+        dateOfBirth: req.body.dateOfBirth,
+        monthlySalary: req.body.monthlySalary,
+    }
+
+    const idnexOfSearchedEmployee = employees?.findIndex(employee => employee.id == id)
+    if (idnexOfSearchedEmployee !== -1) {
+        employees[idnexOfSearchedEmployee] = updatedEmployee
+    }
+
+    res.sendStatus(200)
+})
+

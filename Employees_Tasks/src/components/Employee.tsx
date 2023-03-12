@@ -25,17 +25,24 @@ export const Employee = (props : Employee) : ReactElement =>{
       monthlySalary,
       setEmployees
     } = props
+
+
+   
+
+
+
     return (
         <>
          <tr>
-            <td>{id}</td>
+            <td >{id}</td>
             <td >{fullName}</td>
             <td>{email}</td>
             <td>{phoneNumber}</td>
             <td>{dateOfBirth}</td>
             <td>{monthlySalary}</td>
             <td className="action-td">
-            <EditButton aria_label={text.Employee.EditBtn.aria_label} aria_describedby={text.Employee.EditBtn.aria_describedby}/>
+                {/* @ts-ignore */}
+            <EditButton setEmployees = {setEmployees} aria_label={text.Employee.EditBtn.aria_label} aria_describedby={text.Employee.EditBtn.aria_describedby}/>
              {/* @ts-ignore */}
             <DeleteButton setEmployees = {setEmployees}  aria_label={text.Employee.DeleteBtn.aria_label} />
             </td>
