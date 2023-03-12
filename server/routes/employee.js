@@ -2,7 +2,7 @@ import Express from "express";
 export const employeeRouter = Express.Router()
 let id = 1
 
-const employees = [
+let employees = [
 
 ]
 
@@ -34,5 +34,15 @@ employeeRouter.post('/', (req, res) => {
     }
     id++
     employees.push(employeeToPush)
+    res.sendStatus(200)
+})
+
+
+// ====================================
+//  post requests 
+
+employeeRouter.delete('/:id', (req, res) => {
+    employees = employees.filter(employee => employee.id != req.params.id)
+    if (!employees.length) id = 1
     res.sendStatus(200)
 })

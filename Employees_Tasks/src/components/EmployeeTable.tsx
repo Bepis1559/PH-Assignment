@@ -1,35 +1,23 @@
 import { ReactElement, useState, useEffect } from "react";
 import { Employee } from "./Employee";
-import { GetRequest } from "../helpers/GetRequest";
+import { GetAndSetToResult } from "../helpers/GetAndSetToResult";
 import { AddButton } from "./AddButton";
 import text from '../helpers/propsText.json'
-
-const URL = 'http://localhost:5000/employee/'
-
-export type contextObject = {
-    setEmployees : React.Dispatch<React.SetStateAction<Employee[]>>
-}
 
 
 export const EmployeeTable = () : ReactElement =>{
 
-
     const[employees,setEmployees] = useState<Employee[]>([])
    
-
-
-    
+   
     useEffect(() =>{
-        GetRequest(setEmployees,URL)
+        GetAndSetToResult(setEmployees,text.URL.server)
     },[])
     
     
     return (
        <>
-    
        <AddButton setEmployees = {setEmployees}  aria_describedby={text.Employee.AddBtn.aria_describedby} aria_label={text.Employee.AddBtn.aria_label} content={text.Employee.AddBtn.content}/>
-      
-        
         <table className="table table-bordered text-light">
             <thead >
         <tr>
@@ -43,8 +31,9 @@ export const EmployeeTable = () : ReactElement =>{
         </tr>
      </thead>
      <tbody>
+        
         {employees.map(employee =>
-        <Employee key={employee.id} id={employee.id} fullName={employee.fullName} email = {employee.email} phoneNumber={employee.phoneNumber} dateOfBirth = {employee.dateOfBirth} monthlySalary = {employee.monthlySalary} />
+        <Employee setEmployees = {setEmployees} key={employee.id} id={employee.id} fullName={employee.fullName} email = {employee.email} phoneNumber={employee.phoneNumber} dateOfBirth = {employee.dateOfBirth} monthlySalary = {employee.monthlySalary} />
         )}
     </tbody>
         </table>

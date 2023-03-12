@@ -2,12 +2,14 @@ import { ReactElement,useState } from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Button  from 'react-bootstrap/Button';
+import { Employee } from "./Employee";
 import { PopUp } from "./PopUp";
 
 type propsObject = {
     aria_describedby : string
     aria_label : string
     content : string
+    setEmployees  : React.Dispatch<React.SetStateAction<Employee[]>>
    }
 
 export const AddButton = ({aria_describedby,aria_label,content,setEmployees} : propsObject) : ReactElement =>{

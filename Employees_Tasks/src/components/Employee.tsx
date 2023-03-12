@@ -11,8 +11,10 @@ export type Employee = {
     email : string,
     phoneNumber : number,
     dateOfBirth : string,
-    monthlySalary : number
+    monthlySalary : number,
+    setEmployees? : React.Dispatch<React.SetStateAction<Employee[]>> 
 }
+
 export const Employee = (props : Employee) : ReactElement =>{
     const {
       id , 
@@ -20,20 +22,22 @@ export const Employee = (props : Employee) : ReactElement =>{
       email,
       phoneNumber,
       dateOfBirth,
-      monthlySalary
+      monthlySalary,
+      setEmployees
     } = props
     return (
         <>
          <tr>
             <td>{id}</td>
-            <td>{fullName}</td>
+            <td >{fullName}</td>
             <td>{email}</td>
             <td>{phoneNumber}</td>
             <td>{dateOfBirth}</td>
             <td>{monthlySalary}</td>
             <td className="action-td">
             <EditButton aria_label={text.Employee.EditBtn.aria_label} aria_describedby={text.Employee.EditBtn.aria_describedby}/>
-            <DeleteButton aria_label={text.Employee.DeleteBtn.aria_label}/>
+             {/* @ts-ignore */}
+            <DeleteButton setEmployees = {setEmployees}  aria_label={text.Employee.DeleteBtn.aria_label} />
             </td>
         </tr>
        

@@ -1,13 +1,14 @@
 
 import React, { ReactElement , useReducer } from "react";
-import { PostRequest } from "../helpers/PostRequest";
-
+import { ApiRequest } from "../helpers/ApiRequest";
+import text from '../helpers/propsText.json'
 import { Employee } from "./Employee";
-const URL = 'http://localhost:5000/employee'
+import { GetAndSetToResult } from "../helpers/GetAndSetToResult";
 
 
 type propsObject = {
    handleClose : () => void
+   setEmployees : React.Dispatch<React.SetStateAction<Employee[]>>
 }
 
 
@@ -69,32 +70,25 @@ export const EmployeeForm = ({handleClose ,setEmployees } : propsObject) : React
     }
 
     
-    const setEmployeeListToResult = async (): Promise<void> => {
-      try {
-          const response = await fetch(URL)
-          if (!response.ok) throw Error('Please reload the app,something went wrong')
-          const result = await response.json()
-          setEmployees(result)
-      } catch (error: any) {
-          console.log(error.message)
-      }
-  }
-
+    
     const handleSubmitButton = (e : React.MouseEvent<HTMLButtonElement>) =>{
       
         e.preventDefault()
-        PostRequest(URL,postOptions)
+        ApiRequest(text.URL.server,postOptions)
         setTimeout(() => {
-          setEmployeeListToResult()
+          GetAndSetToResult(setEmployees,text.URL.server)
       }, 100)
         handleClose()
+     
         
     }
+    
+    // Typescript cries too much if I try to make onChange with a function
     return(
         <form method="post" action="http://localhost:5000/employee">
         <div className="mb-3 mt-3">
         <label htmlFor="FullName" className="form-label">Full name:</label>
-      <input required value={state.fullName} onChange={(e) => dispatch({type : "setFullName",payload:e.target.value})} type="text" className="form-control" id="FullName" placeholder="Enter full name" name="FullName"/>
+      <input required value={state.fullName} onChange={(e) => dispatch({type : "setFullName" , payload : e.target.value})} type="text" className="form-control" id="FullName" placeholder="Enter full name" name="FullName"/>
         </div>
         <div className="mb-3 mt-3">
       <label htmlFor="email" className="form-label">Email:</label>

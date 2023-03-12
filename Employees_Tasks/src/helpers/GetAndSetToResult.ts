@@ -1,4 +1,4 @@
-export const GetRequest = async (setFunction: (arrayToBeSet: any[]) => void, URL: string): Promise<void> => {
+export const GetAndSetToResult = async (setFunction: (arrayToBeSet: any[]) => void, URL: string): Promise<void> => {
     try {
         const response = await fetch(URL)
         if (!response.ok) throw Error('Please reload the app,something went wrong')

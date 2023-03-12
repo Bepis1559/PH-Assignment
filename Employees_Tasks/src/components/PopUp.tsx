@@ -2,11 +2,14 @@ import { ReactElement } from "react";
 import Modal  from 'react-bootstrap/Modal';
 import Button  from 'react-bootstrap/Button';
 import { EmployeeForm } from "./EmployeeForm";
+import { Employee } from "./Employee";
+
 
 
 type propsObject = {
     show : boolean
     handleClose : () => void
+    setEmployees : React.Dispatch<React.SetStateAction<Employee[]>>
    
 }
 
