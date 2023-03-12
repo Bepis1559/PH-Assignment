@@ -3,8 +3,7 @@ export const taskRouter = Express.Router()
 let id = 1
 let tasks = []
 
-// ====================================
-//  get requests 
+
 taskRouter.get('/', (req, res) => {
     res.status(200).send(tasks)
 })
@@ -13,8 +12,6 @@ taskRouter.get('/:id', (req, res) => {
     res.status(200).send(searchedTask)
 })
 
-// ====================================
-//  post requests 
 taskRouter.post('/', async (req, res) => {
     try {
         const response = await fetch('http://localhost:5000/employee/');
@@ -47,16 +44,14 @@ taskRouter.post('/', async (req, res) => {
     }
 });
 
-// ====================================
-//  delete requests 
+
 taskRouter.delete('/:id', (req, res) => {
     tasks = tasks.filter(task => task.id != req.params.id)
     if (!tasks.length) id = 1
     res.sendStatus(200)
 })
 
-// ====================================
-//  put requests 
+
 taskRouter.put('/', async (req, res) => {
     const id = req.body.id;
     const updatedTask = {

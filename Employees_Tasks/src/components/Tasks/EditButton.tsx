@@ -66,12 +66,9 @@ export const EditButton = (props: propsObject): ReactElement => {
     }
   }, [editBtnRef]);
 
-  // const [allowedToAdd,setAllowedToAdd] = useState(false)
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // CheckEmployeesNames(text.URL.employee,putData,setAllowedToAdd)
-  //  if(allowedToAdd){
     // @ts-ignore
     const taskId = editBtnRef.current?.parentNode.parentNode.firstChild.textContent
     setId(taskId)
@@ -80,10 +77,6 @@ export const EditButton = (props: propsObject): ReactElement => {
       GetAndSetToResult(setEntity,text.URL.task)
   }, 100)
     handleClose();
-  //   } else{
-  //   setAllowedToAdd(false)
-  //   console.log('Employee does not exist ! ') 
-  //  }
 
   };
 

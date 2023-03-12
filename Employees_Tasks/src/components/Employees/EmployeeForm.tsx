@@ -84,7 +84,6 @@ export const EmployeeForm = ({handleClose ,setEntity } : propsObject) : ReactEle
         
     }
     
-    // Typescript cries too much if I try to make onChange with a function
     return(
         <form method="post" action="http://localhost:5000/employee">
         <div className="mb-3 mt-3">

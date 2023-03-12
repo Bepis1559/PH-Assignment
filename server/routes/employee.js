@@ -7,8 +7,7 @@ let employees = []
 
 
 
-// ====================================
-//  get requests 
+
 employeeRouter.get('/', (req, res) => {
     res.status(200).send(employees)
 })
@@ -19,8 +18,6 @@ employeeRouter.get('/:id', (req, res) => {
 
 
 
-// ====================================
-//  post requests 
 
 employeeRouter.post('/', (req, res) => {
     const employeeToPush =
@@ -37,9 +34,6 @@ employeeRouter.post('/', (req, res) => {
     res.sendStatus(200)
 })
 
-
-// ====================================
-//  delete requests 
 
 
 employeeRouter.delete('/:id', async (req, res) => {
@@ -70,8 +64,7 @@ employeeRouter.delete('/:id', async (req, res) => {
 });
 
 
-// ====================================
-//  put requests 
+
 
 employeeRouter.put('/', (req, res) => {
     const id = req.body.id

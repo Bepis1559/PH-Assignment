@@ -35,10 +35,6 @@ html {
   color-scheme: dark light;
 }
 
-/* =============================== */
-
-
-
 table :is(th, td) {
   text-align: center;
 }
