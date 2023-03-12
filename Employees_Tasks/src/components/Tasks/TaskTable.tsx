@@ -28,6 +28,7 @@ export const TaskTable = () : ReactElement => {
                     <th>Description</th>
                     <th>Assignee</th>
                     <th>Due date</th>
+                    <th>Done</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -40,6 +41,7 @@ export const TaskTable = () : ReactElement => {
                 description={task.description} 
                 assignee={task.assignee} 
                 dueDate={task.dueDate}   
+                done = {task.done}
                 setEntity = {setTasks}             
                 />
               ))}

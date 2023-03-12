@@ -3,10 +3,6 @@ export const taskRouter = Express.Router()
 let id = 1
 let tasks = []
 
-
-
-
-
 // ====================================
 //  get requests 
 taskRouter.get('/', (req, res) => {
@@ -17,11 +13,8 @@ taskRouter.get('/:id', (req, res) => {
     res.status(200).send(searchedTask)
 })
 
-
-
 // ====================================
 //  post requests 
-
 taskRouter.post('/', async (req, res) => {
     try {
         const response = await fetch('http://localhost:5000/employee/');
@@ -33,6 +26,7 @@ taskRouter.post('/', async (req, res) => {
             description: req.body.description,
             assignee: req.body.assignee,
             dueDate: req.body.dueDate,
+            done: req.body.done
         };
 
         const assigneeExists = employees.some(employee => {
@@ -53,11 +47,8 @@ taskRouter.post('/', async (req, res) => {
     }
 });
 
-
-
 // ====================================
 //  delete requests 
-
 taskRouter.delete('/:id', (req, res) => {
     tasks = tasks.filter(task => task.id != req.params.id)
     if (!tasks.length) id = 1
@@ -66,7 +57,6 @@ taskRouter.delete('/:id', (req, res) => {
 
 // ====================================
 //  put requests 
-
 taskRouter.put('/', async (req, res) => {
     const id = req.body.id;
     const updatedTask = {
@@ -75,6 +65,7 @@ taskRouter.put('/', async (req, res) => {
         description: req.body.description,
         assignee: req.body.assignee,
         dueDate: req.body.dueDate,
+        done: req.body.done
     };
 
     try {
@@ -101,4 +92,3 @@ taskRouter.put('/', async (req, res) => {
         res.status(500).send('An error occurred while trying to update the task.');
     }
 });
-

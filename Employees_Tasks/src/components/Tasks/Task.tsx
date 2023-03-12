@@ -12,6 +12,7 @@ export type Task = {
     description : string,
     assignee : string,
     dueDate : string,
+    done : boolean,
     setEntity? : React.Dispatch<React.SetStateAction<Task[]>> 
 }
 
@@ -23,6 +24,7 @@ export const Task = (props : Task) : ReactElement => {
         description ,
         assignee ,
         dueDate ,
+        done,
         setEntity 
     } = props
 
@@ -33,6 +35,7 @@ export const Task = (props : Task) : ReactElement => {
               <td>{description}</td>
               <td>{assignee}</td>
               <td>{dueDate}</td>
+              <td>{done.toString()}</td>
               <td className="action-td">
                 {/* @ts-ignore */}
                

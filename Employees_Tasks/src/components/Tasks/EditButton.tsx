@@ -44,6 +44,7 @@ export const EditButton = (props: propsObject): ReactElement => {
     const [description,setDescription] = useState('')
     const [assignee,setAsignee] = useState('')
     const [dueDate,setDueDate] = useState('')
+    const[done,setDone] = useState(false)
 
     const editBtnRef = useRef(null)
   
@@ -54,6 +55,7 @@ export const EditButton = (props: propsObject): ReactElement => {
      description : description,
      assignee : assignee,
      dueDate : dueDate,
+     done : done,
    }
    useEffect(() => {
     if (editBtnRef.current) {
@@ -112,6 +114,12 @@ export const EditButton = (props: propsObject): ReactElement => {
             <BSFormDiv content="Asignee" contentType = "text" value = {assignee} setEntity = {setAsignee}   />
              {/* @ts-ignore */}
             <BSFormDiv content="Due date" contentType = "date"  value = {dueDate} setEntity = {setDueDate}  />
+            <div className="mb-3 mt-3">
+      <label htmlFor="done" className="form-label">
+        Is task done ? 
+      </label>
+      <input checked={done} onChange = {(e) => setDone(e.target.checked)} type="checkbox" className="form-control  form-check-input " id="done" name="done"/>
+    </div>
 
             <Button
             

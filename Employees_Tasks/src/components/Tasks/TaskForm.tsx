@@ -19,6 +19,7 @@ type FormAction =
  | {type : 'setDescription';payload : string}
  | {type : 'setAssignee';payload : string}
  | {type : 'setDueDate';payload : string}
+ | {type : 'setDone';payload : boolean}
 
 
  const initialState : Task = {
@@ -26,6 +27,7 @@ type FormAction =
     description : '',
     assignee : '',
     dueDate : '',
+    done : false
  }
 
  const formReducer = (state : Task,action : FormAction ) : Task =>{
@@ -38,6 +40,8 @@ type FormAction =
             return {...state,assignee : action.payload }
         case 'setDueDate' :
             return {...state,dueDate : action.payload }
+        case 'setDone' :
+            return {...state,done : action.payload }
        }
  }
 
@@ -56,6 +60,7 @@ export const TaskForm = ({handleClose ,setEntity } : propsObject) : ReactElement
         description: state.description,
         assignee: state.assignee,
         dueDate: state.dueDate,
+        done: state.done
     }
 
     const postOptions = {
@@ -99,6 +104,11 @@ export const TaskForm = ({handleClose ,setEntity } : propsObject) : ReactElement
       <label htmlFor="DueDate" className="form-label">Due date :</label>
       <input required value={state.dueDate} onChange={(e) => dispatch({type : "setDueDate",payload:e.target.value})} type="date" className="form-control" id="DueDate" placeholder="Enter due date : " name="DueDate"/>
       </div>
+        <div className="mb-3 mt-3">
+      <label htmlFor="done" className="form-label">Done :</label>
+      <input  required checked={state.done} onChange={(e) => dispatch({type : "setDone",payload:e.target.checked})} type="checkbox" className="form-control  form-check-input " id="done"  name="done"/>
+      </div>
+      
         
         <button onClick={(e) => handleSubmitButton(e)} type="submit" className="btn btn-primary">Submit</button>
       </form> 

@@ -37,7 +37,7 @@ html {
 
 /* =============================== */
 
-/* employee table */
+
 
 table :is(th, td) {
   text-align: center;
@@ -57,7 +57,9 @@ table :is(th, td) {
   justify-content: space-around;
 }
 
-/* buttons */
+.margin-block-start-10r {
+  margin-block-start: calc(6em + 3vw + 3vh);
+}
 
 .add-btn-container {
   display: flex;
