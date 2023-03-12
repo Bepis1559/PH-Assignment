@@ -5,11 +5,11 @@ type propsObject = {
   content : string
   contentType : string
   value : string | number
-  setValue : React.Dispatch<React.SetStateAction<string | number>>;
+  setEntity : React.Dispatch<React.SetStateAction<string | number>>;
 }
 
 
-export const BSFormDiv = ({content,contentType,value,setValue}: propsObject): ReactElement => {
+export const BSFormDiv = ({content,contentType,value,setEntity}: propsObject): ReactElement => {
   const placeHolder = `Set a new ${content} `;
   return (
     <div className="mb-3 mt-3">
@@ -18,7 +18,7 @@ export const BSFormDiv = ({content,contentType,value,setValue}: propsObject): Re
       </label>
       <input
       value={value}
-      onChange = {(e) => setValue(e.target.value)}
+      onChange = {(e) => setEntity(e.target.value)}
         type={contentType}
         className="form-control"
         id={content}

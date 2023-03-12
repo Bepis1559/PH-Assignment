@@ -1,19 +1,21 @@
 import { ReactElement, useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import text from "../helpers/propsText.json";
+// import text from "../../helpers/propsText.json";
 import { ApiRequest } from "../helpers/ApiRequest";
 import { GetAndSetToResult } from "../helpers/GetAndSetToResult";
-import { Employee } from "./Employee";
 
 type propsObject = {
   aria_label: string;
-  setEmployees: React.Dispatch<React.SetStateAction<Employee[]>>;
+  setEntity : any // cause of reusability
+  URL : string
+  // setEntity: React.Dispatch<React.SetStateAction<Employee[] | Task>>;
 };
 
 export const DeleteButton = ({
   aria_label,
-  setEmployees,
+  setEntity,
+  URL
 }: propsObject): ReactElement => {
   const deleteBtnRef = useRef(null);
 
@@ -34,11 +36,11 @@ export const DeleteButton = ({
       deleteBtnRef.current?.parentNode.parentNode.firstChild.textContent,
     );
     // @ts-ignore
-    ApiRequest(text.URL.server + idForDeleting?.toString(), {
+    ApiRequest(URL + idForDeleting?.toString(), {
       method: "DELETE",
     });
     setTimeout(() => {
-      GetAndSetToResult(setEmployees, text.URL.server);
+      GetAndSetToResult(setEntity, URL);
     }, 100);
   };
   return (

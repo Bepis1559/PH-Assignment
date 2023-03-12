@@ -2,9 +2,9 @@ import Express from "express";
 export const employeeRouter = Express.Router()
 let id = 1
 
-let employees = [
+let employees = []
 
-]
+
 
 
 // ====================================
@@ -41,11 +41,34 @@ employeeRouter.post('/', (req, res) => {
 // ====================================
 //  delete requests 
 
-employeeRouter.delete('/:id', (req, res) => {
-    employees = employees.filter(employee => employee.id != req.params.id)
-    if (!employees.length) id = 1
-    res.sendStatus(200)
-})
+
+employeeRouter.delete('/:id', async (req, res) => {
+    const employeeId = parseInt(req.params.id);
+
+    try {
+        const response = await fetch('http://localhost:5000/task');
+        const tasks = await response.json();
+
+        let hasTaskAssigned = false;
+        tasks?.forEach(task => {
+            if (task.assignee.toLowerCase().trim().includes(employees[employeeId - 1].fullName.toLowerCase().trim())) {
+                hasTaskAssigned = true;
+            }
+        });
+
+        if (hasTaskAssigned) {
+            res.status(500).send('You cannot delete an employee while they still have a task assigned to them.');
+        } else {
+            employees = employees.filter(employee => employee.id !== employeeId);
+            if (!employees.length) id = 1;
+            res.sendStatus(200);
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('An error occurred while trying to delete the employee.');
+    }
+});
+
 
 // ====================================
 //  put requests 
@@ -61,9 +84,9 @@ employeeRouter.put('/', (req, res) => {
         monthlySalary: req.body.monthlySalary,
     }
 
-    const idnexOfSearchedEmployee = employees?.findIndex(employee => employee.id == id)
-    if (idnexOfSearchedEmployee !== -1) {
-        employees[idnexOfSearchedEmployee] = updatedEmployee
+    const indexOfSearchedEmployee = employees?.findIndex(employee => employee.id == id)
+    if (indexOfSearchedEmployee !== -1) {
+        employees[indexOfSearchedEmployee] = updatedEmployee
     }
 
     res.sendStatus(200)

@@ -3,25 +3,28 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { EmployeeForm } from "./EmployeeForm";
 import { Employee } from "./Employee";
+import { Task } from "../Tasks/Task";
 
 type propsObject = {
   show: boolean;
   handleClose: () => void;
-  setEmployees: React.Dispatch<React.SetStateAction<Employee[]>>;
+  content : string;
+  setEntity: React.Dispatch<React.SetStateAction<Employee[] | Task[]>>;
 };
 
 export const PopUp = ({
   show,
   handleClose,
-  setEmployees,
+  content,
+  setEntity,
 }: propsObject): ReactElement => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Set the characteristics of the employee </Modal.Title>
+        <Modal.Title>Set the characteristics of the {content} </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <EmployeeForm setEmployees={setEmployees} handleClose={handleClose} />
+        <EmployeeForm setEntity={setEntity} handleClose={handleClose} />
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>

@@ -43,6 +43,9 @@ table :is(th, td) {
   text-align: center;
 }
 
+.employeesContainer {
+  margin-block-end: calc(6em + 3vw + 3vh);
+}
 
 .btn {
   padding: .1em .3em;

@@ -1,14 +1,15 @@
 
 import React, { ReactElement , useReducer } from "react";
-import { ApiRequest } from "../helpers/ApiRequest";
-import text from '../helpers/propsText.json'
+import { ApiRequest } from "../../helpers/ApiRequest";
+import text from '../../helpers/propsText.json'
 import { Employee } from "./Employee";
-import { GetAndSetToResult } from "../helpers/GetAndSetToResult";
+import { GetAndSetToResult } from "../../helpers/GetAndSetToResult";
+import { Task } from "../Tasks/Task";
 
 
 type propsObject = {
    handleClose : () => void
-   setEmployees : React.Dispatch<React.SetStateAction<Employee[]>>
+   setEntity : React.Dispatch<React.SetStateAction<Employee[] | Task[]>>
 }
 
 
@@ -48,7 +49,7 @@ type FormAction =
  
 
 
-export const EmployeeForm = ({handleClose ,setEmployees } : propsObject) : ReactElement =>{
+export const EmployeeForm = ({handleClose ,setEntity } : propsObject) : ReactElement =>{
 
 
 
@@ -74,9 +75,9 @@ export const EmployeeForm = ({handleClose ,setEmployees } : propsObject) : React
     const handleSubmitButton = (e : React.MouseEvent<HTMLButtonElement>) =>{
       
         e.preventDefault()
-        ApiRequest(text.URL.server,postOptions)
+        ApiRequest(text.URL.employee,postOptions)
         setTimeout(() => {
-          GetAndSetToResult(setEmployees,text.URL.server)
+          GetAndSetToResult(setEntity,text.URL.employee)
       }, 100)
         handleClose()
      

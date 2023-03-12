@@ -1,7 +1,8 @@
 import { ReactElement } from "react";
-import { DeleteButton } from "./DeleteButton";
+import { DeleteButton } from "../DeleteButton";
 import { EditButton } from "./EditButton";
-import text from '../helpers/propsText.json'
+
+import text from '../../helpers/propsText.json'
 
 
 
@@ -12,7 +13,7 @@ export type Employee = {
     phoneNumber : number,
     dateOfBirth : string,
     monthlySalary : number,
-    setEmployees? : React.Dispatch<React.SetStateAction<Employee[]>> 
+    setEntity? : React.Dispatch<React.SetStateAction<Employee[]>> 
 }
 
 export const Employee = (props : Employee) : ReactElement =>{
@@ -23,7 +24,7 @@ export const Employee = (props : Employee) : ReactElement =>{
       phoneNumber,
       dateOfBirth,
       monthlySalary,
-      setEmployees
+      setEntity
     } = props
 
 
@@ -32,7 +33,6 @@ export const Employee = (props : Employee) : ReactElement =>{
 
 
     return (
-        <>
          <tr>
             <td >{id}</td>
             <td >{fullName}</td>
@@ -42,13 +42,12 @@ export const Employee = (props : Employee) : ReactElement =>{
             <td>{monthlySalary}</td>
             <td className="action-td">
                 {/* @ts-ignore */}
-            <EditButton setEmployees = {setEmployees} aria_label={text.Employee.EditBtn.aria_label} aria_describedby={text.Employee.EditBtn.aria_describedby}/>
+            <EditButton setEntity = {setEntity} aria_label={text.Employee.EditBtn.aria_label} aria_describedby={text.Employee.EditBtn.aria_describedby}/>
              {/* @ts-ignore */}
-            <DeleteButton setEmployees = {setEmployees}  aria_label={text.Employee.DeleteBtn.aria_label} />
+            <DeleteButton URL = {text.URL.employee} setEntity = {setEntity}  aria_label={text.Employee.DeleteBtn.aria_label} />
             </td>
         </tr>
        
-</>
        
     )
 }

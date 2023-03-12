@@ -1,11 +1,13 @@
 import Express from "express";
 import cors from 'cors'
 import { employeeRouter } from "./routes/employee.js";
+import { taskRouter } from "./routes/task.js";
 const app = Express()
 app.use(Express.json())
 app.use(Express.urlencoded({ extended: true }))
 app.use(cors({ origin: 'http://localhost:5173' }))
 app.use('/employee', employeeRouter)
+app.use('/task', taskRouter)
 
 app.listen(5000, () => console.log("Items server started on port 5000"))
 

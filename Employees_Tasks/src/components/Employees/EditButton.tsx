@@ -3,28 +3,36 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import text from "../helpers/propsText.json";
-import { BSFormDiv } from "./BSFormDiv";
-import { GetAndSetToResult } from "../helpers/GetAndSetToResult";
+import text from "../../helpers/propsText.json";
+import { BSFormDiv } from "../BSFormDiv";
+import { GetAndSetToResult } from "../../helpers/GetAndSetToResult";
 
 type propsObject = {
   aria_describedby: string
   aria_label: string
-  setEmployees : () => void
+  setEntity : () => void
 };
-const updateEmployee = async(data : any) =>{
-  await fetch(text.URL.server,
-    {
-      method: 'PUT',
-      headers: {
-        'content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }
-    )
- }   
 
-export const EditButton = ({aria_describedby, aria_label,setEmployees }: propsObject): ReactElement => {
+
+export const EditButton = (props: propsObject): ReactElement => {
+
+  const {
+    aria_describedby, 
+    aria_label,
+    setEntity
+  } = props
+
+  const updateEmployee = async(data : any) =>{
+    await fetch(text.URL.employee,
+      {
+        method: 'PUT',
+        headers: {
+          'content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }
+      )
+   }   
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -64,7 +72,7 @@ export const EditButton = ({aria_describedby, aria_label,setEmployees }: propsOb
     setId(employeeId)
     updateEmployee(putData)
     setTimeout(() => {
-      GetAndSetToResult(setEmployees,text.URL.server)
+      GetAndSetToResult(setEntity,text.URL.employee)
   }, 100)
     handleClose();
 
@@ -90,15 +98,15 @@ export const EditButton = ({aria_describedby, aria_label,setEmployees }: propsOb
         <Modal.Body>
           <form action="/action_page.php">
             {/* @ts-ignore */}
-            <BSFormDiv content="Full name" contentType = "text" value = {fullName} setValue = {setFullName}    />
+            <BSFormDiv content="Full name" contentType = "text" value = {fullName} setEntity = {setFullName}    />
              {/* @ts-ignore */}
-            <BSFormDiv content="Email" contentType = "email" value = {email} setValue = {setEmail}   />
+            <BSFormDiv content="Email" contentType = "email" value = {email} setEntity = {setEmail}   />
              {/* @ts-ignore */}
-            <BSFormDiv content={`Phone number`} contentType = "tel" value = {phoneNumber} setValue = {setPhoneNumber}   />
+            <BSFormDiv content={`Phone number`} contentType = "tel" value = {phoneNumber} setEntity = {setPhoneNumber}   />
              {/* @ts-ignore */}
-            <BSFormDiv content="Date of birth" contentType = "date"  value = {dateOfBirth} setValue = {setDateOfBirth}  />
+            <BSFormDiv content="Date of birth" contentType = "date"  value = {dateOfBirth} setEntity = {setDateOfBirth}  />
              {/* @ts-ignore */}
-            <BSFormDiv content="Monthly salary" contentType = "number" value = {monthlySalary} setValue = {setmonthlySalary}  />
+            <BSFormDiv content="Monthly salary" contentType = "number" value = {monthlySalary} setEntity = {setmonthlySalary}  />
 
             <Button
             

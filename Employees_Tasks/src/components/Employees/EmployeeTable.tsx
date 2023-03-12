@@ -1,25 +1,26 @@
 import { ReactElement, useState, useEffect } from "react";
 import { Employee } from "./Employee";
-import { GetAndSetToResult } from "../helpers/GetAndSetToResult";
+import { GetAndSetToResult } from "../../helpers/GetAndSetToResult";
 import { AddButton } from "./AddButton";
-import text from "../helpers/propsText.json";
+import text from "../../helpers/propsText.json";
 
 export const EmployeeTable = (): ReactElement => {
   const [employees, setEmployees] = useState<Employee[]>([]);
 
   useEffect(() => {
-    GetAndSetToResult(setEmployees, text.URL.server);
+    GetAndSetToResult(setEmployees, text.URL.employee);
   }, []);
 
   return (
-    <>
+    <div className="employeesContainer">
       <AddButton
-        setEmployees={setEmployees}
+      // @ts-ignore
+        setEntity={setEmployees}
         aria_describedby={text.Employee.AddBtn.aria_describedby}
         aria_label={text.Employee.AddBtn.aria_label}
         content={text.Employee.AddBtn.content}
       />
-      <table className="table table-bordered text-light">
+      <table className="table table-bordered text-light ">
         <thead>
           <tr>
             <th>Id</th>
@@ -32,9 +33,9 @@ export const EmployeeTable = (): ReactElement => {
           </tr>
         </thead>
         <tbody>
-          {employees.map((employee) => (
+          {employees.map(employee => (
             <Employee
-              setEmployees={setEmployees}
+            setEntity={setEmployees}
               key={employee.id}
               id={employee.id}
               fullName={employee.fullName}
@@ -46,6 +47,6 @@ export const EmployeeTable = (): ReactElement => {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };

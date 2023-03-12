@@ -2,21 +2,21 @@ import { ReactElement, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
-import { Employee } from "./Employee";
+import { Task } from "./Task";
 import { PopUp } from "./PopUp";
 
 type propsObject = {
   aria_describedby: string;
   aria_label: string;
   content: string;
-  setEmployees: React.Dispatch<React.SetStateAction<Employee[]>>;
+  setEntity: React.Dispatch<React.SetStateAction<Task[]>>;
 };
 
 export const AddButton = ({
   aria_describedby,
   aria_label,
   content,
-  setEmployees,
+  setEntity,
 }: propsObject): ReactElement => {
   const [show, setShow] = useState(false);
   const handleAddBtnOnClick = () => {
@@ -41,7 +41,9 @@ export const AddButton = ({
         </Button>
       </div>
       <PopUp
-        setEmployees={setEmployees}
+    //   @ts-ignore
+        setEntity={setEntity}
+        content = {content}
         show={show}
         handleClose={handleClose}
       />
